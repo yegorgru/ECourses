@@ -1,0 +1,22 @@
+all: main.o libtests libnumber libexpressiontree
+	g++ -std=c++17 main.o -o Calculator -L. -ltests -lnumber -lexpressiontree
+
+main.o: main.cpp
+	g++ -std=c++17 -c main.cpp
+
+libtests:
+	g++ -std=c++17 -fpic -c Tests.cpp
+	ar rcs libtests.a Tests.o 
+
+libexpressiontree:
+	g++ -std=c++17 -fpic -shared -o libexpressiontree.so ExpressionTree.cpp
+
+libnumber:
+	g++ -std=c++17 -fpic -shared -o libnumber.so Number.cpp
+
+clean:
+	rm -rf *.o
+	rm -rf *.so
+	rm -rf *.a
+	rm -rf *.tmp
+	rm -rf Calculator

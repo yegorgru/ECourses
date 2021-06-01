@@ -1,0 +1,23 @@
+CC=g++
+
+CFLAGS=-std=c++17
+
+all: main
+
+main: main.o ExpressionTree.o Number.o Tests.o
+	$(CC) $(CFLAGS) main.o ExpressionTree.o Number.o Tests.o -o Calculator
+
+main.o: main.cpp
+	$(CC) $(CFLAGS) -c main.cpp
+
+ExpressionTree.o: ExpressionTree.cpp
+	$(CC) $(CFLAGS) -c ExpressionTree.cpp
+
+Number.o: Number.cpp
+	$(CC) $(CFLAGS) -c Number.cpp
+
+Tests.o: Tests.cpp
+	$(CC) $(CFLAGS) -c Tests.cpp
+
+clean:
+	rm -rf *.o Calculator
