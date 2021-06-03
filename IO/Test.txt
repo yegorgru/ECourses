@@ -1,0 +1,7 @@
+Grigorii,Skovoroda,3.56348756,5
+Taras,Shevchenko,4,5
+Hose,De San-Martin, 4.9,9
+Immanuel,Kant, 2.534343465465474765756,1
+Niccolo,Machiavelli,5,50
+Jean-Jacques,Rousseau,4.333,6
+Ludwig,Wittgenstein,4,4
