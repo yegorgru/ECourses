@@ -52,6 +52,11 @@ void MyShared_ptr::reset(CObject* ptr) {
 	if (m_Data) m_Control = new Control{ 1 };
 }
 
+void MyShared_ptr::swap(MyShared_ptr& r) noexcept {
+	std::swap(m_Data, r.m_Data);
+	std::swap(m_Control, r.m_Control);
+}
+
 void MyShared_ptr::destruct() {
 	if (m_Control && m_Control->counter > 1) {
 		--m_Control->counter;
