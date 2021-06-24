@@ -140,6 +140,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MyUnique_ptr.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CObject.h" />
+    <ClInclude Include="doctest.h" />
+    <ClInclude Include="MyUnique_ptr.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
