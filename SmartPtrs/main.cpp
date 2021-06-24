@@ -125,6 +125,8 @@ TEST_CASE("testing MyShared_ptr") {
 		ptr3.swap(ptr);
 		CHECK(ptr.use_count() == 1);
 		CHECK(ptr3.use_count() == 3);
+		ptr3.reset();
+		CHECK(ptr2.use_count() == 2);
 	}
 	{
 		MyShared_ptr p1(new CObject);
