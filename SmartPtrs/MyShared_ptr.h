@@ -28,7 +28,6 @@ public:
 	CObject& operator*() const;
 	CObject* operator->() const noexcept;
 	long use_count() const noexcept;
-	bool unique() const noexcept;
 	explicit operator bool() const noexcept;
 private:
 	void destruct();

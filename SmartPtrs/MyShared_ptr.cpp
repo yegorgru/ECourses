@@ -57,6 +57,29 @@ void MyShared_ptr::swap(MyShared_ptr& r) noexcept {
 	std::swap(m_Control, r.m_Control);
 }
 
+CObject* MyShared_ptr::get() const noexcept
+{
+	return m_Data;
+}
+
+CObject& MyShared_ptr::operator*() const
+{
+	return *m_Data;
+}
+
+CObject* MyShared_ptr::operator->() const noexcept
+{
+	return m_Data;
+}
+
+long MyShared_ptr::use_count() const noexcept {
+	return m_Data ? m_Control->counter : 0;
+}
+
+MyShared_ptr::operator bool() const noexcept {
+	return m_Data;
+}
+
 void MyShared_ptr::destruct() {
 	if (m_Control && m_Control->counter > 1) {
 		--m_Control->counter;
