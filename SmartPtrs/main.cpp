@@ -74,6 +74,7 @@ TEST_CASE("testing MyShared_ptr") {
 		CHECK(!ptr);
 		MyShared_ptr ptr3;
 		CHECK(ptr3.get() == nullptr);
+		CHECK(ptr3.use_count() == 0);
 		ptr3 = std::move(ptr2);
 		CHECK(ptr3.get() == obj);
 	}
