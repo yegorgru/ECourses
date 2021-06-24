@@ -10,5 +10,10 @@ public:
 };
 
 class DerivedObject : public CObject {
+public:
+	DerivedObject() = default;
+
+	DerivedObject(const std::string& s, int n);
+
 	std::string foo() const override;
 };

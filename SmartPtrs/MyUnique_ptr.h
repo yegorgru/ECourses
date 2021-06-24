@@ -33,7 +33,7 @@ private:
 template<class T, class ...Args>
 MyUnique_ptr make_unique(Args && ...args)
 {
-	auto p = new T(args);
+	auto p = new T(args...);
 	return MyUnique_ptr(p);
 }
 
