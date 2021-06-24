@@ -46,3 +46,13 @@ CObject* MyUnique_ptr::get() const noexcept {
 MyUnique_ptr::operator bool() const noexcept {
 	return m_Data;
 }
+
+CObject& MyUnique_ptr::operator*() const
+{
+	return *m_Data;
+}
+
+CObject* MyUnique_ptr::operator->() const noexcept
+{
+	return m_Data;
+}

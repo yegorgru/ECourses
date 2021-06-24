@@ -22,6 +22,10 @@ public:
 	//Observers
 	CObject* get() const noexcept;
 	explicit operator bool() const noexcept;
+
+	//Operators
+	CObject& operator*() const;
+	CObject* operator->() const noexcept;
 private:
 	CObject* m_Data;
 };
