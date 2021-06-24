@@ -66,9 +66,12 @@ TEST_CASE("testing MyShared_ptr") {
 		auto obj = new CObject;
 		MyShared_ptr ptr(obj);
 		CHECK(ptr.get() == obj);
+		CHECK(ptr);
 		MyShared_ptr ptr2(std::move(ptr));
 		CHECK(ptr2.get() == obj);
 		CHECK(ptr.get() == nullptr);
+		CHECK(ptr2);
+		CHECK(!ptr);
 		MyShared_ptr ptr3;
 		CHECK(ptr3.get() == nullptr);
 		ptr3 = std::move(ptr2);
@@ -89,10 +92,45 @@ TEST_CASE("testing MyShared_ptr") {
 		{
 			MyShared_ptr ptr2 = ptr;
 			CHECK(ptr.use_count() == 2);
+			MyShared_ptr ptr3(ptr);
+			CHECK(ptr.use_count() == 3);
+			MyShared_ptr ptr4(std::move(ptr));
+			CHECK(ptr.use_count() == 0);
+			CHECK(ptr4.use_count() == 3);
+			ptr = std::move(ptr4);
+			CHECK(ptr.use_count() == 3);
+			CHECK(ptr4.use_count() == 0);
 		}
 		CHECK(ptr.use_count() == 1);
+	}
+	{
 		MyShared_ptr base_ptr(new CObject);
-		CHECK(ptr.use_count() == 1);
 		CHECK(base_ptr.use_count() == 1);
+		MyShared_ptr ptr(new DerivedObject);
+		MyShared_ptr ptr2 = ptr;
+		CHECK(ptr.use_count() == 2);
+		CHECK(MyShared_ptr(ptr).use_count() == 3);
+		CHECK(ptr.use_count() == 2);
+		MyShared_ptr base_ptr2(base_ptr);
+		CHECK(base_ptr2.use_count() == 2);
+		MyShared_ptr ptr3 = ptr;
+		CHECK(ptr.use_count() == 3);
+		base_ptr2 = std::move(ptr3);
+		CHECK(ptr.use_count() == 3);
+		CHECK(base_ptr.use_count() == 1);
+		CHECK(base_ptr2.use_count() == 3);
+		CHECK(ptr3.use_count() == 0);
+		ptr3.reset(new CObject);
+		ptr3.swap(ptr);
+		CHECK(ptr.use_count() == 1);
+		CHECK(ptr3.use_count() == 3);
+	}
+	{
+		MyShared_ptr p1(new CObject);
+		MyShared_ptr p2(new DerivedObject);
+		CHECK(p1->foo() == "foo");
+		CHECK(p2->foo() == "derived foo");
+		CHECK((*p1).foo() == "foo");
+		CHECK((*p2).foo() == "derived foo");
 	}
 }

@@ -32,12 +32,13 @@ MyShared_ptr& MyShared_ptr::operator=(const MyShared_ptr& r) noexcept {
 }
 
 MyShared_ptr& MyShared_ptr::operator=(MyShared_ptr&& r) noexcept {
-	destruct();
-	m_Data = r.m_Data;
-	m_Control = r.m_Control;
-	if (m_Control) ++m_Control->counter;
-	r.m_Data = nullptr;
-	r.m_Control = nullptr;
+	if (m_Data != r.m_Data) {
+		destruct();
+		m_Data = r.m_Data;
+		m_Control = r.m_Control;
+		if (m_Control) ++m_Control->counter;
+	}
+	r.destruct();
 	return *this;
 }
 
@@ -88,4 +89,6 @@ void MyShared_ptr::destruct() {
 		delete m_Control;
 		delete m_Data;
 	}
+	m_Control = nullptr;
+	m_Data = nullptr;
 }
