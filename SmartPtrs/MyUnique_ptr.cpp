@@ -24,15 +24,17 @@ MyUnique_ptr::~MyUnique_ptr() {
 	m_Data = nullptr;
 }
 
-CObject* MyUnique_ptr::release() noexcept
-{
+CObject* MyUnique_ptr::release() noexcept {
 	auto p = m_Data;
 	m_Data = nullptr;
 	return p;
 }
 
-void MyUnique_ptr::reset(CObject* p) noexcept
-{
+void MyUnique_ptr::reset(CObject* p) noexcept {
 	if (m_Data) delete m_Data;
 	m_Data = p;
+}
+
+void MyUnique_ptr::swap(MyUnique_ptr& other) noexcept {
+	std::swap(m_Data, other.m_Data);
 }
