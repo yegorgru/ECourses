@@ -21,3 +21,20 @@ MyShared_ptr::MyShared_ptr(MyShared_ptr&& r) noexcept :
 	r.m_Data = nullptr;
 	r.m_Control = nullptr;
 }
+
+MyShared_ptr& MyShared_ptr::operator=(const MyShared_ptr& r) noexcept
+{
+	m_Data = r.m_Data;
+	m_Control = r.m_Control;
+	if (m_Control) ++m_Control->counter;
+	return *this;
+}
+
+MyShared_ptr& MyShared_ptr::operator=(MyShared_ptr&& r) noexcept
+{
+	m_Data = r.m_Data;
+	m_Control = r.m_Control;
+	r.m_Data = nullptr;
+	r.m_Control = nullptr;
+	return *this;
+}
