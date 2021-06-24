@@ -4,7 +4,7 @@
 class MyShared_ptr
 {
 	struct Control {
-		size_t counter;
+		long counter;
 	};
 
 public:
