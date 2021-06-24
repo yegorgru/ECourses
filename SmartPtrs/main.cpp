@@ -24,11 +24,11 @@ TEST_CASE("testing MyUnique_ptr") {
 		from_reset.reset(d);
 		CHECK(from_reset);
 		CHECK(from_ctor);
-		CHECK(from_reset == from_ctor);
+		CHECK(from_reset.get() == from_ctor.get());
 
 		CHECK(from_reset.get() == from_ctor.get());
 		CHECK(from_reset.get() != empty.get());
-		empty = make_unique<DerivedObject>();
+		empty = MyUnique_ptr(new DerivedObject);
 		CHECK(from_reset.get() == from_ctor.get());
 		CHECK(from_reset.get() != empty.get());
 		from_ctor.release();
@@ -44,7 +44,7 @@ TEST_CASE("testing MyUnique_ptr") {
 		CHECK(p1.get() == cObjectPtr);
 		CHECK(!p2);
 
-		p2 = make_unique<DerivedObject>("a", 5);
+		p2 = MyUnique_ptr(new DerivedObject);
 		auto cObjectPtr2 = p2.get();
 		CHECK(p1.get() == cObjectPtr);
 		CHECK(p2.get() == cObjectPtr2);
