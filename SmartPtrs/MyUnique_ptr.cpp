@@ -38,3 +38,7 @@ void MyUnique_ptr::reset(CObject* p) noexcept {
 void MyUnique_ptr::swap(MyUnique_ptr& other) noexcept {
 	std::swap(m_Data, other.m_Data);
 }
+
+CObject* MyUnique_ptr::get() const noexcept {
+	return m_Data;
+}

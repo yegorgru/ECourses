@@ -18,6 +18,9 @@ public:
 	CObject* release() noexcept;
 	void reset(CObject* p = nullptr) noexcept;
 	void swap(MyUnique_ptr& other) noexcept;
+
+	//Observers
+	CObject* get() const noexcept;
 private:
 	CObject* m_Data;
 };
