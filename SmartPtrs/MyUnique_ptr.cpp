@@ -13,6 +13,12 @@ MyUnique_ptr::MyUnique_ptr(MyUnique_ptr&& u) noexcept {
 	u.m_Data = nullptr;
 }
 
+MyUnique_ptr& MyUnique_ptr::operator=(MyUnique_ptr&& r) noexcept
+{
+	this->m_Data = r.m_Data;
+	r.m_Data = nullptr;
+}
+
 MyUnique_ptr::~MyUnique_ptr() {
 	if (m_Data) delete m_Data;
 	m_Data = nullptr;
