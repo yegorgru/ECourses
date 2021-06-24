@@ -38,3 +38,14 @@ MyShared_ptr& MyShared_ptr::operator=(MyShared_ptr&& r) noexcept
 	r.m_Control = nullptr;
 	return *this;
 }
+
+MyShared_ptr::~MyShared_ptr()
+{
+	if (m_Control && m_Control->counter > 1) {
+		--m_Control->counter;
+	}
+	else if (m_Control) {
+		delete m_Control;
+	}
+	if(m_Data) delete m_Data;
+}
