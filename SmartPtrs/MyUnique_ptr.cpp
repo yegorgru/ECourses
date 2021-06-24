@@ -30,3 +30,9 @@ CObject* MyUnique_ptr::release() noexcept
 	m_Data = nullptr;
 	return p;
 }
+
+void MyUnique_ptr::reset(CObject* p) noexcept
+{
+	if (m_Data) delete m_Data;
+	m_Data = p;
+}

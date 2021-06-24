@@ -16,6 +16,7 @@ public:
 
 	//Modifiers
 	CObject* release() noexcept;
+	void reset(CObject* p = nullptr) noexcept;
 private:
 	CObject* m_Data;
 };
