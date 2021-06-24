@@ -42,3 +42,7 @@ void MyUnique_ptr::swap(MyUnique_ptr& other) noexcept {
 CObject* MyUnique_ptr::get() const noexcept {
 	return m_Data;
 }
+
+MyUnique_ptr::operator bool() const noexcept {
+	return m_Data;
+}
