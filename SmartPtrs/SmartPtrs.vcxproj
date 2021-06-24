@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CObject.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MyUnique_ptr.cpp" />
   </ItemGroup>

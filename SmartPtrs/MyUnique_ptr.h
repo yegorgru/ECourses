@@ -28,4 +28,15 @@ public:
 	CObject* operator->() const noexcept;
 private:
 	CObject* m_Data;
+
+	template <class T, class... Args>
+	friend MyUnique_ptr make_unique(Args&&... args);
 };
+
+template<class T, class ...Args>
+MyUnique_ptr make_unique(Args && ...args)
+{
+	MyUnique_ptr p;
+	p.m_Data = new T(args);
+	return p;
+}
