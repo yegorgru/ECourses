@@ -86,6 +86,6 @@ void MyShared_ptr::destruct() {
 	}
 	else if (m_Control) {
 		delete m_Control;
+		delete m_Data;
 	}
-	if (m_Data) delete m_Data;
 }

@@ -3,6 +3,7 @@
 
 #include "MyUnique_ptr.h"
 #include "CObject.h"
+#include "MyShared_ptr.h"
 
 #include <memory>
 
@@ -57,5 +58,41 @@ TEST_CASE("testing MyUnique_ptr") {
 		MyUnique_ptr p2(new DerivedObject);
 		CHECK(p1->foo() == "foo");
 		CHECK((*p2).foo() == "derived foo");
+	}
+}
+
+TEST_CASE("testing MyShared_ptr") {
+	{
+		auto obj = new CObject;
+		MyShared_ptr ptr(obj);
+		CHECK(ptr.get() == obj);
+		MyShared_ptr ptr2(std::move(ptr));
+		CHECK(ptr2.get() == obj);
+		CHECK(ptr.get() == nullptr);
+		MyShared_ptr ptr3;
+		CHECK(ptr3.get() == nullptr);
+		ptr3 = std::move(ptr2);
+		CHECK(ptr3.get() == obj);
+	}
+	{
+		MyShared_ptr ptr;
+		CHECK(ptr.use_count() == 0);
+		ptr.reset();
+		CHECK(ptr.use_count() == 0);
+		ptr.reset(new DerivedObject);
+		CHECK(ptr.use_count() == 1);
+		{
+			MyShared_ptr ptr2(ptr);
+			CHECK(ptr.use_count() == 2);
+		}
+		CHECK(ptr.use_count() == 1);
+		{
+			MyShared_ptr ptr2 = ptr;
+			CHECK(ptr.use_count() == 2);
+		}
+		CHECK(ptr.use_count() == 1);
+		MyShared_ptr base_ptr(new CObject);
+		CHECK(ptr.use_count() == 1);
+		CHECK(base_ptr.use_count() == 1);
 	}
 }
