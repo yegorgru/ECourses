@@ -20,7 +20,7 @@ public:
 	~MyShared_ptr();
 
 	//Modifiers
-	void reset(CObject* ptr);
+	void reset(CObject* ptr = nullptr);
 	void swap(MyShared_ptr& r) noexcept;
 
 	//Observers
@@ -31,6 +31,8 @@ public:
 	bool unique() const noexcept;
 	explicit operator bool() const noexcept;
 private:
+	void destruct();
+
 	CObject* m_Data;
 	Control* m_Control;
 };
