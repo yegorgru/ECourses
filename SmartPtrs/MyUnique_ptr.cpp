@@ -23,3 +23,10 @@ MyUnique_ptr::~MyUnique_ptr() {
 	if (m_Data) delete m_Data;
 	m_Data = nullptr;
 }
+
+CObject* MyUnique_ptr::release() noexcept
+{
+	auto p = m_Data;
+	m_Data = nullptr;
+	return p;
+}

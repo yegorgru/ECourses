@@ -3,6 +3,7 @@
 
 class MyUnique_ptr {
 public:
+	//Constructors, assignment operators, destructor
 	MyUnique_ptr() noexcept;
 	explicit MyUnique_ptr(CObject* p) noexcept;
 	MyUnique_ptr(MyUnique_ptr&& u) noexcept;
@@ -12,6 +13,9 @@ public:
 	MyUnique_ptr& operator=(MyUnique_ptr& r) = delete;
 
 	~MyUnique_ptr();
+
+	//Modifiers
+	CObject* release() noexcept;
 private:
 	CObject* m_Data;
 };
