@@ -9,6 +9,11 @@ MyUnique_ptr::MyUnique_ptr(CObject* p) noexcept :
 	m_Data(p) {}
 
 MyUnique_ptr::MyUnique_ptr(MyUnique_ptr&& u) noexcept {
-	std::swap(this->m_Data, u.m_Data);
+	this->m_Data = u.m_Data;
 	u.m_Data = nullptr;
+}
+
+MyUnique_ptr::~MyUnique_ptr() {
+	if (m_Data) delete m_Data;
+	m_Data = nullptr;
 }
