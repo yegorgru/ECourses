@@ -15,8 +15,10 @@ MyUnique_ptr::MyUnique_ptr(MyUnique_ptr&& u) noexcept {
 
 MyUnique_ptr& MyUnique_ptr::operator=(MyUnique_ptr&& r) noexcept
 {
+	reset();
 	this->m_Data = r.m_Data;
 	r.m_Data = nullptr;
+	return *this;
 }
 
 MyUnique_ptr::~MyUnique_ptr() {
