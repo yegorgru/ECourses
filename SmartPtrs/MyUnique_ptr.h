@@ -28,15 +28,13 @@ public:
 	CObject* operator->() const noexcept;
 private:
 	CObject* m_Data;
-
-	template <class T, class... Args>
-	friend MyUnique_ptr make_unique(Args&&... args);
 };
 
 template<class T, class ...Args>
 MyUnique_ptr make_unique(Args && ...args)
 {
-	MyUnique_ptr p;
-	p.m_Data = new T(args);
-	return p;
+	auto p = new T(args);
+	return MyUnique_ptr(p);
 }
+
+bool operator == (const MyUnique_ptr& p1, const MyUnique_ptr& p2);

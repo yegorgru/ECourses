@@ -58,3 +58,8 @@ CObject* MyUnique_ptr::operator->() const noexcept
 {
 	return m_Data;
 }
+
+bool operator==(const MyUnique_ptr& p1, const MyUnique_ptr& p2)
+{
+	return p1.get() == p2.get();
+}
