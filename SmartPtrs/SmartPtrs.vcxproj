@@ -142,11 +142,13 @@
   <ItemGroup>
     <ClCompile Include="CObject.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MyShared_ptr.cpp" />
     <ClCompile Include="MyUnique_ptr.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CObject.h" />
     <ClInclude Include="doctest.h" />
+    <ClInclude Include="MyShared_ptr.h" />
     <ClInclude Include="MyUnique_ptr.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
