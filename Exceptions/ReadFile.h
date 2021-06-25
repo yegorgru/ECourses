@@ -1,6 +1,7 @@
 #pragma once
 
 #include <exception>
+#include <string>
 
 class FileOpenFailed : public std::exception {
 public:
@@ -28,7 +29,7 @@ public:
 };
 
 
-void read_file_exceptions();
+void read_file_exceptions(const std::string& path);
 
 enum class ErrorCode {
 	FileOpenFailed = -5,
@@ -39,4 +40,4 @@ enum class ErrorCode {
 	SuccessfullyRead
 };
 
-ErrorCode read_file_error_codes();
+ErrorCode read_file_error_codes(const std::string& path);

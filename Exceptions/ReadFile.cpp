@@ -1,13 +1,12 @@
 #include "ReadFile.h"
 
 #include <fstream>
-#include <string>
 #include <iostream>
 
-void read_file_exceptions() {
+void read_file_exceptions(const std::string& path) {
 	try
 	{
-	std::ifstream fin("task.txt", std::ios::ate);
+	std::ifstream fin(path, std::ios::ate);
 	if (!fin.is_open()) {
 		throw FileOpenFailed();
 	}
@@ -63,9 +62,9 @@ void read_file_exceptions() {
 	}
 }
 
-ErrorCode read_file_error_codes() {
+ErrorCode read_file_error_codes(const std::string& path) {
 	auto code = ErrorCode::SuccessfullyRead;
-	std::ifstream fin("task.txt", std::ios::ate);
+	std::ifstream fin(path, std::ios::ate);
 	if (!fin.is_open()) {
 		code = ErrorCode::FileOpenFailed;
 	}
