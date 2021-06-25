@@ -31,10 +31,10 @@ public:
 void read_file_exceptions();
 
 enum class ErrorCode {
-	FileDidntOpen = -5,
-	FileDidntClose,
-	UnknownSize,
-	NotEnoughMemory,
+	FileOpenFailed = -5,
+	FileCloseFailed,
+	SizeDeterminationFailed,
+	MemoryAllocationFailed,
 	ReadFailed,
 	SuccessfullyRead
 };
