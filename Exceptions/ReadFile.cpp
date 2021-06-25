@@ -5,7 +5,62 @@
 #include <iostream>
 
 void read_file_exceptions() {
-	
+	try
+	{
+	std::ifstream fin("task.txt", std::ios::ate);
+	if (!fin.is_open()) {
+		throw FileOpenFailed();
+	}
+	else {
+		long size = fin.tellg();
+		if (size <= 0) {
+			throw SizeDeterminationFailed();
+		}
+		else {
+			std::string fileData;
+			fileData.reserve(size);
+			if (fileData.capacity() != size) {
+				throw MemoryAllocationFailed();
+			}
+			else {
+				try
+				{
+					fileData = std::string((std::istreambuf_iterator<char>(fin)),
+						std::istreambuf_iterator<char>());
+					std::cout << "read_file_error_codes: " << fileData << std::endl;
+				}
+				catch (const std::exception&)
+				{
+					throw ReadFailed();
+				}
+			}
+		}
+		fin.close();
+		if (fin.is_open()) {
+			throw FileCloseFailed();
+		}
+	}
+	}
+	catch (const FileOpenFailed& ex)
+	{
+		std::cout << ex.what() << std::endl;
+	}
+	catch (const SizeDeterminationFailed& ex)
+	{
+		std::cout << ex.what() << std::endl;
+	}
+	catch (const MemoryAllocationFailed& ex)
+	{
+		std::cout << ex.what() << std::endl;
+	}
+	catch (const ReadFailed& ex)
+	{
+		std::cout << ex.what() << std::endl;
+	}
+	catch (const FileCloseFailed& ex)
+	{
+		std::cout << ex.what() << std::endl;
+	}
 }
 
 ErrorCode read_file_error_codes() {

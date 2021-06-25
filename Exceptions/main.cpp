@@ -1,6 +1,8 @@
 #include <iostream>
 
-int main()
-{
-    std::cout << "Hello World!\n";
+#include "ReadFile.h"
+
+int main() {
+    read_file_exceptions();
+    read_file_error_codes();
 }
