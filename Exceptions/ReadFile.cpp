@@ -35,6 +35,9 @@ ErrorCode read_file_error_codes() {
 				{
 					code = ErrorCode::ReadFailed;
 				}
+				if (fileData.size() != size) {
+					code = ErrorCode::ReadFailed;
+				}
 			}
 		}
 		fin.close();
