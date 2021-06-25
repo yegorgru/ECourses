@@ -26,7 +26,7 @@ void read_file_exceptions(const std::string& path) {
 				{
 					fileData = std::string((std::istreambuf_iterator<char>(fin)),
 						std::istreambuf_iterator<char>());
-					std::cout << "read_file_error_codes: " << fileData << std::endl;
+					std::cout << "read_file_exceptions: " << fileData << std::endl;
 				}
 				catch (const std::exception&)
 				{

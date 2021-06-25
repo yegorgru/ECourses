@@ -21,7 +21,7 @@ int main() {
 		std::cout << "Can't read file" << std::endl;
 		break;
 	}
-	case ErrorCode::FileCloseFailed: {
+	case ErrorCode::FileCloseFailed : {
 		std::cout << "Can't close file" << std::endl;
 		break;
 	}
