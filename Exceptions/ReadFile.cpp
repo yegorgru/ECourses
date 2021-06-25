@@ -24,6 +24,7 @@ void read_file_exceptions(const std::string& path) {
 			else {
 				try
 				{
+					fin.seekg(0, std::ios::beg);
 					fileData = std::string((std::istreambuf_iterator<char>(fin)),
 						std::istreambuf_iterator<char>());
 					std::cout << "read_file_exceptions: " << fileData << std::endl;
@@ -82,6 +83,7 @@ ErrorCode read_file_error_codes(const std::string& path) {
 			else {
 				try
 				{
+					fin.seekg(0, std::ios::beg);
 					fileData = std::string((std::istreambuf_iterator<char>(fin)),
 						std::istreambuf_iterator<char>());
 					std::cout << "read_file_error_codes: " << fileData << std::endl;
