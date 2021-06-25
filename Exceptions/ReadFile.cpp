@@ -47,3 +47,23 @@ ErrorCode read_file_error_codes() {
 	}
 	return code;
 }
+
+const char* FileOpenFailed::what() const noexcept {
+	return "Can't open file";
+}
+
+const char* SizeDeterminationFailed::what() const noexcept {
+	return "Can't determine size of file";
+}
+
+const char* MemoryAllocationFailed::what() const noexcept {
+	return "Can't allocate memory";
+}
+
+const char* ReadFailed::what() const noexcept {
+	return "Can't read file";
+}
+
+const char* FileCloseFailed::what() const noexcept {
+	return "Can't close file";
+}
