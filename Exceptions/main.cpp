@@ -3,7 +3,9 @@
 #include "ReadFile.h"
 
 int main() {
+	std::cout << "read file exceptions:" << std::endl;
     read_file_exceptions("SomeText.txt");
+	std::cout << "read file error codes:" << std::endl;
     switch (read_file_error_codes("SomeText.txt")) {
 	case ErrorCode::FileOpenFailed : {
 		std::cout << "Can't open file" << std::endl;
