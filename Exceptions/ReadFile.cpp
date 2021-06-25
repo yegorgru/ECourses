@@ -18,7 +18,7 @@ void read_file_exceptions(const std::string& path) {
 		else {
 			std::string fileData;
 			fileData.reserve(size);
-			if (fileData.capacity() != size) {
+			if (fileData.capacity() < size) {
 				throw MemoryAllocationFailed();
 			}
 			else {
@@ -76,7 +76,7 @@ ErrorCode read_file_error_codes(const std::string& path) {
 		else {
 			std::string fileData;
 			fileData.reserve(size);
-			if (fileData.capacity() != size) {
+			if (fileData.capacity() < size) {
 				code = ErrorCode::MemoryAllocationFailed;
 			}
 			else {
