@@ -24,5 +24,22 @@ TEST(ValidationTest, HandleBasicOperations) {
     EXPECT_TRUE(ExpressionTree::CheckValidity(s.begin(), s.end()));
 }
 
+TEST(ValidationTest, HandleBasicOperationsWithoutParameter) {
+    std::string s = "123/";
+    EXPECT_FALSE(ExpressionTree::CheckValidity(s.begin(), s.end()));
+    s = "123+";
+    EXPECT_FALSE(ExpressionTree::CheckValidity(s.begin(), s.end()));
+    s = "123-";
+    EXPECT_FALSE(ExpressionTree::CheckValidity(s.begin(), s.end()));
+    s = "123*";
+    EXPECT_FALSE(ExpressionTree::CheckValidity(s.begin(), s.end()));
+    s = "+123";
+    EXPECT_FALSE(ExpressionTree::CheckValidity(s.begin(), s.end()));
+    s = "*123";
+    EXPECT_FALSE(ExpressionTree::CheckValidity(s.begin(), s.end()));
+    s = "/123";
+    EXPECT_FALSE(ExpressionTree::CheckValidity(s.begin(), s.end()));
+}
+
 //  EXPECT_EQ(1, 1);
 //  EXPECT_TRUE(true);
