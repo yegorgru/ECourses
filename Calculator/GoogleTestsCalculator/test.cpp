@@ -58,5 +58,23 @@ TEST(ValidationTest, HandleExpressionWithParenthesesAndSingleNumber) {
     EXPECT_TRUE(ExpressionTree::CheckValidity(s.begin(), s.end()));
 }
 
+TEST(ValidationTest, HandleComplexExpressions) {
+    std::string s = "-((((5)+(123)/8))-2)";
+    EXPECT_TRUE(ExpressionTree::CheckValidity(s.begin(), s.end()));
+    s = "5-(3+3*2)";
+    EXPECT_TRUE(ExpressionTree::CheckValidity(s.begin(), s.end()));
+    s = "5-(-(3+3*2))";
+    EXPECT_TRUE(ExpressionTree::CheckValidity(s.begin(), s.end()));
+    s = "5-(--(3+3*2))";
+    EXPECT_FALSE(ExpressionTree::CheckValidity(s.begin(), s.end()));
+    s = "5-(-(3+*3*2))";
+    EXPECT_FALSE(ExpressionTree::CheckValidity(s.begin(), s.end()));
+    s = "5-((3+3*2)";
+    EXPECT_FALSE(ExpressionTree::CheckValidity(s.begin(), s.end()));
+    s = "5-((3+3*2a)";
+    EXPECT_FALSE(ExpressionTree::CheckValidity(s.begin(), s.end()));
+    s = "(5)-(-3)";
+    EXPECT_TRUE(ExpressionTree::CheckValidity(s.begin(), s.end()));
+}
 //  EXPECT_EQ(1, 1);
 //  EXPECT_TRUE(true);
