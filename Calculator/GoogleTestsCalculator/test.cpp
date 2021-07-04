@@ -1,6 +1,15 @@
 #include "pch.h"
 
-TEST(TestCaseName, TestName) {
-  EXPECT_EQ(1, 1);
-  EXPECT_TRUE(true);
+#include <string>
+
+#include "../ExpressionTree.h"
+
+TEST(ValidationTest, HandleNumberInput) {
+    std::string s = "123";
+    EXPECT_TRUE(ExpressionTree::CheckValidity(s.begin(), s.end()));
+    s = "-123";
+    EXPECT_TRUE(ExpressionTree::CheckValidity(s.begin(), s.end()));
 }
+
+//  EXPECT_EQ(1, 1);
+//  EXPECT_TRUE(true);
