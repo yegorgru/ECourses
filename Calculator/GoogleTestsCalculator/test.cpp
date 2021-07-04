@@ -41,5 +41,22 @@ TEST(ValidationTest, HandleBasicOperationsWithoutParameter) {
     EXPECT_FALSE(ExpressionTree::CheckValidity(s.begin(), s.end()));
 }
 
+TEST(ValidationTest, HandleExpressionWithParenthesesAndSingleNumber) {
+    std::string s = ")123";
+    EXPECT_FALSE(ExpressionTree::CheckValidity(s.begin(), s.end()));
+    s = "(123";
+    EXPECT_FALSE(ExpressionTree::CheckValidity(s.begin(), s.end()));
+    s = ")(123";
+    EXPECT_FALSE(ExpressionTree::CheckValidity(s.begin(), s.end()));
+    s = "12)(3";
+    EXPECT_FALSE(ExpressionTree::CheckValidity(s.begin(), s.end()));
+    s = "123)(";
+    EXPECT_FALSE(ExpressionTree::CheckValidity(s.begin(), s.end()));
+    s = "(123)";
+    EXPECT_TRUE(ExpressionTree::CheckValidity(s.begin(), s.end()));
+    s = "(((123)))";
+    EXPECT_TRUE(ExpressionTree::CheckValidity(s.begin(), s.end()));
+}
+
 //  EXPECT_EQ(1, 1);
 //  EXPECT_TRUE(true);
