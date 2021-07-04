@@ -91,5 +91,24 @@ TEST(CalculationTest, HandlePlusMinus) {
     tree.SetExpression("111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111+111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111");
     EXPECT_EQ(tree.Calculate().ToString(), "222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222");
 }
+
+TEST(CalculationTest, HandleMultiplicationDivision) {
+    ExpressionTree tree("5*5");
+    EXPECT_EQ(tree.Calculate().ToString(), "25");
+    tree.SetExpression("-5*5");
+    EXPECT_EQ(tree.Calculate().ToString(), "-25");
+    tree.SetExpression("5*(-5)");
+    EXPECT_EQ(tree.Calculate().ToString(), "-25");
+    tree.SetExpression("-5*(-5)");
+    EXPECT_EQ(tree.Calculate().ToString(), "25");
+    tree.SetExpression("15/3");
+    EXPECT_EQ(tree.Calculate().ToString(), "5");
+    tree.SetExpression("-15/3");
+    EXPECT_EQ(tree.Calculate().ToString(), "-5");
+    tree.SetExpression("15/(-3)");
+    EXPECT_EQ(tree.Calculate().ToString(), "-5");
+    tree.SetExpression("(-15)/(-3)");
+    EXPECT_EQ(tree.Calculate().ToString(), "5");
+}
 //  EXPECT_EQ(1, 1);
 //  EXPECT_TRUE(true);
