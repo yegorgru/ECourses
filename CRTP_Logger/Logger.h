@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <iostream>
 
 template <typename T>
 class Logger
@@ -8,7 +9,8 @@ class Logger
 public:
 	Logger(int level);
 
-	void Log(const std::string& message);
+	template <typename... Args>
+	void Log(Args&&... args);
 
 protected:
 	int m_Level;
@@ -20,7 +22,9 @@ public:
 
 	void LogHeader();
 	void LogFooter();
-	void LogMessage(const std::string& message);
+
+	template <typename... Args>
+	void LogMessage(Args&&... args);
 };
 
 template <typename T>
@@ -29,9 +33,15 @@ Logger<T>::Logger(int level) {
 }
 
 template <typename T>
-void Logger<T>::Log(const std::string& message) {
+template <typename... Args>
+void Logger<T>::Log(Args&&... args) {
 	auto p = static_cast<T*>(this);
 	p->LogHeader();
-	p->LogMessage(message);
+	p->LogMessage(std::forward<Args>(args)...);
 	p->LogFooter();
+}
+
+template <typename... Args>
+void ConsoleLogger::LogMessage(Args&&... args) {
+	(std::cout << ... << args);
 }

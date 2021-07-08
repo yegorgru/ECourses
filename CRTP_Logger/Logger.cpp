@@ -14,10 +14,6 @@ void ConsoleLogger::LogHeader() {
 	std::cout << "Level: " << m_Level << " Timestamp: " << time << " [";
 }
 
-void ConsoleLogger::LogMessage(const std::string& message) {
-	std::cout << message;
-}
-
 void ConsoleLogger::LogFooter() {
 	std::cout << "]" << std::endl;
 }
