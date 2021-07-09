@@ -2,6 +2,7 @@
 
 #include <string>
 #include <iostream>
+#include <fstream>
 
 template <typename T>
 class Logger
@@ -27,6 +28,20 @@ public:
 	void LogMessage(Args&&... args);
 };
 
+class FileLogger : public Logger<FileLogger> {
+public:
+	FileLogger(int level);
+
+	void LogHeader();
+	void LogFooter();
+
+	template <typename... Args>
+	void LogMessage(Args&&... args);
+
+private:
+	std::ofstream fout;
+};
+
 template <typename T>
 Logger<T>::Logger(int level) {
 	m_Level = level;
@@ -44,4 +59,9 @@ void Logger<T>::Log(Args&&... args) {
 template <typename... Args>
 void ConsoleLogger::LogMessage(Args&&... args) {
 	(std::cout << ... << args);
+}
+
+template <typename... Args>
+void FileLogger::LogMessage(Args&&... args) {
+	(fout << ... << args);
 }
